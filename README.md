@@ -119,8 +119,6 @@ The interface is served directly by the ESP32-CAM as **HTML embedded** in the sk
 
 > ⚠️ Set the LM2596 to **exactly 5V** before connecting the ESP32-CAM — check with a multimeter. A voltage higher than 5.5V can permanently damage the module.
 
----
-
 ## 🚀 Installation & Deployment
 
 ### Prerequisites
