@@ -1,31 +1,28 @@
 <div align="center">
 
-<!-- Remplace ce placeholder par ton GIF/photo principal du tank -->
 <img src="https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExaDVjanZqZHRhOXA0aHNubmMxYm8wajNjNnNsc2J4Mnh2czB4MzEyaiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/rTLjwB6zOxV9S/giphy.gif" width="450">
 
 <br/>
 
-# 🦾 Robot-Tank: Pilotage FPV via ESP32-CAM
+# Robot-Tank: FPV Control via ESP32-CAM
 
-**TIC-RBT1 · Projet 2 · ETNA**
+**TIC-RBT1 • Project 2 • ETNA**
 
 ![ESP32](https://img.shields.io/badge/ESP32-CAM-E7352C?style=flat-square&logo=espressif&logoColor=white)
 ![Language](https://img.shields.io/badge/Language-C%2B%2B-blue?style=flat-square&logo=cplusplus)
 ![Interface](https://img.shields.io/badge/Interface-HTTP%20Web%20UI-informational?style=flat-square)
-![Status](https://img.shields.io/badge/Status-Fonctionnel-brightgreen?style=flat-square)
-![Rendu](https://img.shields.io/badge/Rendu-Mai%202026-orange?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Fonctional-brightgreen?style=flat-square)
+![Rendu](https://img.shields.io/badge/Delivered-Mai%202026-orange?style=flat-square)
 
 </div>
 
----
-
-## 👥 Équipe
+## 👥 Team
 
 <table>
   <tr>
 	<td valign="middle">
-	  <strong>Module :</strong> TIC-RBT1 &nbsp;·&nbsp; <strong>Rendu :</strong> Mai 2026<br/>
-	  <strong>Co-Labs ETNA</strong> · Groupe de 4<br/><br/>
+	  <strong>Module :</strong> TIC-RBT1 &nbsp;•&nbsp; <strong>Delivered :</strong> Mai 2026<br/>
+	  <strong>Co-Labs ETNA</strong> • Team of 4<br/><br/>
 	  <code>corde_t</code><br/>
 	  <code>judea_d</code><br/>
 	  <code>kingki_n</code><br/>
@@ -33,18 +30,16 @@
 	</td>
 	<td valign="middle" align="center">
   <br>
-  <img src="https://i.pinimg.com/originals/f3/8d/8d/f38d8ddde751b734217a16e45ec81ca9.gif" width="300">
+  <img src="https://media1.tenor.com/m/oy2nLtz3Fk4AAAAC/leopard-tank-tank.gif" width="300">
 </td>
   </tr>
 </table>
 
----
+## 🎯 Overview
 
-## 🎯 Présentation
+This project involves building and programming a **remotely controlled FPV (First Person View) tank** based on the ESP32-CAM. The robot is controlled wirelessly via an onboard web interface, accessible from any browser connected to the tank’s Wi-Fi network.
 
-Ce projet consiste en la construction et la programmation d'un **tank téléopéré en FPV** (_First Person View_) à base d'ESP32-CAM. Le robot est piloté sans fil via une interface web embarquée, accessible depuis n'importe quel navigateur connecté au réseau WiFi du tank.
-
-L'ESP32-CAM gère simultanément deux tâches critiques :
+The ESP32-CAM simultaneously handles two critical tasks:
 
 ```
 ┌─────────────────────────────────────────┐
@@ -55,124 +50,146 @@ L'ESP32-CAM gère simultanément deux tâches critiques :
 └─────────────────────────────────────────┘
 ```
 
-Les commandes reçues (`/forward`, `/backward`, `/left`, `/right`, `/stop`) sont traduites en signaux **PWM** envoyés au variateur double (ESC), qui pilote les deux moteurs DC des chenilles indépendamment.
+The commands received (`/forward`, `/backward`, `/left`, `/right`, `/stop`) are converted into **PWM** signals sent to the dual ESC, which controls the two DC motors of the tracks independently.
 
 ---
 
-## 🧩 Composants
+## 🧩 Components
 
-| Composant                    | Quantité | Rôle                                                 |
-| ---------------------------- | -------- | ---------------------------------------------------- |
-| ESP32-CAM                    | 1        | Cerveau : WiFi, serveur HTTP, flux vidéo FPV         |
-| Module de programmation USB  | 1        | Interface de téléversement du code                   |
-| Châssis tank avec chenilles  | 1        | Structure mécanique tout-terrain                     |
-| Moteurs DC                   | 2        | Propulsion chenille gauche et chenille droite        |
-| Dual ESC (variateur double)  | 1        | Contrôle vitesse & sens des moteurs via PWM          |
-| Régulateur de tension LM2596 | 1        | Abaisse la tension batterie à 5V stable pour l'ESP32 |
-| Batterie LiPo                | 1        | Alimentation principale du système                   |
-| Visserie M3 / M3.5           | ~50      | Fixation mécanique de l'ensemble                     |
-| Inserts filetés              | 13       | Fixation dans les pièces imprimées 3D                |
+| Component                        | Quantity | Function                                                |
+| -------------------------------- | -------- | ------------------------------------------------------- |
+| ESP32-CAM                        | 1        | Brain: WiFi, HTTP server, FPV video stream              |
+| USB programming module           | 1        | Code upload interface                                   |
+| Tank chassis with tracks         | 1        | All-terrain mechanical structure                        |
+| DC Motors                        | 2        | Left and right track propulsion                         |
+| Dual ESC (dual speed controller) | 1        | Motor speed & direction control via PWM                 |
+| LM2596 voltage regulator         | 1        | Steps down battery voltage to a stable 5V for the ESP32 |
+| LiPo battery                     | 1        | Main power supply for the system                        |
+| M3 / M3.5 screws                 | ~50      | Mechanical fasteners for the assembly                   |
+| Threaded inserts                 | 13       | Fasteners for 3D-printed parts                          |
 
 ---
 
-## 🔌 Schéma de câblage
+## 🔌 Wiring Diagram
 
-<img src="./assets/schema_cablage.png" width="450">
+<img src="./assets/wiring_diagram.png" width="450">
 
-> Le schéma est également disponible dans le fichier `schema_cablage.pdf` inclus dans le dépôt.
+> The diagram is also available in the `wiring_diagram.pdf` file included in the repository.
 
-### Vue d'ensemble
+### Overview
 
 ```
-Batterie LiPo
-	│
-	├──► ESC (alimentation moteurs)
-	│        ├── Moteur gauche
-	│        └── Moteur droit
-	│
-	└──► LM2596 (régulateur 5V)
-			 └──► ESP32-CAM (5V / GND)
-					  ├── GPIO → Signal PWM ESC canal gauche
-					  └── GPIO → Signal PWM ESC canal droit
+LiPo battery
+    │
+    ├──► ESC (motor power supply)
+    │        ├── Left motor
+    │        └── Right motor
+    │
+	└──► LM2596 (5V regulator)
+             └──► ESP32-CAM (5V / GND)
+                      ├── GPIO → Left channel ESC PWM signal
+                      └── GPIO → Right channel ESC PWM signal
 ```
 
----
+## 🖥️ Web UI
 
-## 🖥️ Interface Web UI
+The interface is served directly by the ESP32-CAM as **HTML embedded** in the sketch. It can be accessed from any browser on the tank’s network.
 
-L'interface est servie directement par l'ESP32-CAM sous forme de **HTML embarqué** dans le sketch. Elle est accessible depuis n'importe quel navigateur sur le réseau du tank.
+**Features:**
 
-**Fonctionnalités :**
-
-- Flux vidéo en temps réel
-- 5 boutons de direction : ↑ ↓ ← → ⏹
+- Real-time video feed
+- 5 directional buttons: ↑ ↓ ← → ⏹
 
 ---
 
 ### ESP32-CAM → ESC
 
-| Broche ESP32-CAM | Canal ESC    | Rôle                       |
-| ---------------- | ------------ | -------------------------- |
-| GPIO 14          | Canal gauche | Signal PWM chenille gauche |
-| GPIO 15          | Canal droit  | Signal PWM chenille droite |
-| GND              | GND ESC      | Masse commune              |
+| ESP32-CAM Pin | ESC Channel   | Function               |
+| ------------- | ------------- | ---------------------- |
+| GPIO 14       | Left channel  | Left track PWM signal  |
+| GPIO 15       | Right channel | Right track PWM signal |
+| GND           | ESC GND       | Common ground          |
 
 ### LM2596 → ESP32-CAM
 
-| Sortie LM2596 | Broche ESP32-CAM |
-| ------------- | ---------------- |
-| +5V           | 5V               |
-| GND           | GND              |
+| LM2596 Output | ESP32-CAM Pin |
+| ------------- | ------------- |
+| +5V           | 5V            |
+| GND           | GND           |
 
-> ⚠️ Régler le LM2596 à **5V exactement** avant de connecter l'ESP32-CAM — vérifier à la multimètre. Une tension supérieure à 5,5V peut endommager irrémédiablement le module.
+> ⚠️ Set the LM2596 to **exactly 5V** before connecting the ESP32-CAM — check with a multimeter. A voltage higher than 5.5V can permanently damage the module.
 
 ---
 
-## 🚀 Installation & déploiement
+## 🚀 Installation & Deployment
 
-### Prérequis
+### Prerequisites
 
 - [Arduino IDE](https://www.arduino.cc/en/software) 2.x
-- Package ESP32 installé via le Boards Manager (`https://espressif.github.io/arduino-esp32/package_esp32_index.json`)
-- Bibliothèque `esp32-camera` (incluse dans le package ESP32)
-- Module de programmation USB branché sur l'ESP32-CAM
+- ESP32 package installed via the Boards Manager (`https://espressif.github.io/arduino-esp32/package_esp32_index.json`)
+- `esp32-camera` library (included in the ESP32 package)
+- USB programming module connected to the ESP32-CAM
 
-### Téléversement
+### Uploading
 
 ```bash
-# 2. Ouvrir Server.ino dans l'Arduino IDE
+# 2. Open Server.ino in the Arduino IDE
 
-# 3. Sélectionner la carte
-# Outils → Type de carte → AI Thinker ESP32-CAM
+# 3. Select the board
+# Tools → Board Type → AI Thinker ESP32-CAM
 
-# 4. Configurer le SSID/mot de passe WiFi dans le sketch
+# 4. Configure the WiFi SSID/password in the sketch
 
-# 5. Brancher le module de programmation USB
-#    → Mettre GPIO0 à GND pendant le téléversement (mode flash)
+# 5. Connect the USB programming module
+#    → Set GPIO0 to GND during upload (flash mode)
 
-# 6. Téléverser - Ctrl+U
+# 6. Upload - Ctrl+U
 
-# 7. Après téléversement : débrancher GPIO0 de GND, appuyer sur Reset
+# 7. After upload: disconnect GPIO0 from GND, press Reset
 
-# 8. Ouvrir le moniteur série à 115200 baud pour récupérer l'adresse IP
+# 8. Open the serial monitor at 115200 baud to retrieve the IP address
 ```
 
----
+## ⚡ Issues encountered
 
-## ⚡ Difficultés rencontrées
+- **ESC arming**: without sending the neutral signal at startup, the ESC remained locked in safety mode. Resolved by adding a PWM initialization sequence in `setup()`.
 
-- **Armement de l'ESC** : sans envoi du signal neutre au démarrage, l'ESC restait bloqué en sécurité. Résolution en ajoutant une séquence d'initialisation PWM dans le `setup()`.
-- **Inserts filetés** : température trop élevée du fer à souder entraînant une déformation des pièces imprimées. Résolution en travaillant à ~200°C avec des appuis courts et répétés plutôt qu'un seul appui prolongé.
-- **Conflit streaming / HTTP** : le flux vidéo et le serveur de commandes se bloquaient mutuellement. Résolution en assignant le streaming et les commandes à deux tâches distinctes via `xTaskCreatePinnedToCore()`.
+- **Streaming/HTTP conflict**: the video stream and the command server were blocking each other. Resolved by assigning streaming and commands to two separate tasks via `xTaskCreatePinnedToCore()`.
+  x
 
 ---
 
 <div align="center">
 <img src="https://media1.tenor.com/m/ooCTXobZwPwAAAAd/tank-meme.gif"  width="450">
 
-_Projet réalisé au Co-Labs ETNA · Module TIC-RBT1 · Mai 2026_
+_Project completed at Co-Labs ETNA · ICT-RBT1 Module · May 2026_
 
-`corde_t` · `judea_d` · `kingki_n` · `brouar_l`
+[Corde_t](https://github.com/ThomasC-Banks) • [Judea_d](https://github.com/David-JUDEA) • [Kingki_n](https://github.com/lkb113) • [Brouar_l](https://github.com/JustKIKS)
 
 </div>
-# Robot-Tank
+
+## Gallery :
+
+#### Testing and assembly :
+
+![Assembly](./assets/Before-assembly.jpeg)
+
+---
+
+#### Showcasing I :
+
+![show](./assets/Showcase1.jpeg)
+
+---
+
+#### Showcasing I :
+
+![show](./assets/Showcase2.jpeg)
+
+---
+
+###### (Video coming soon...)
+
+---
+
+_**A big thanks to ETNA for this project.**_
